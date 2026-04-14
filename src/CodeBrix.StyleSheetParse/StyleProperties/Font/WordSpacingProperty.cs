@@ -1,0 +1,14 @@
+namespace CodeBrix.StyleSheetParse; //Was previously: namespace ExCSS;
+
+internal sealed class WordSpacingProperty : Property
+{
+    private static readonly IValueConverter StyleConverter = Converters.OptionalLengthConverter.OrDefault();
+
+    internal WordSpacingProperty()
+        : base(
+            PropertyNames.WordSpacing, PropertyFlags.Inherited | PropertyFlags.Unitless | PropertyFlags.Animatable)
+    {
+    }
+
+    internal override IValueConverter Converter => StyleConverter;
+}

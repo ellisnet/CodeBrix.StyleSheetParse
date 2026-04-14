@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>CodeBrix.StyleSheetParse</AssemblyName>
+    <RootNamespace>CodeBrix.StyleSheetParse</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>CodeBrix.StyleSheetParse.MitLicenseForever</PackageId>
+    <Version>1.0.102</Version>
+    <Product>CodeBrix.StyleSheetParse</Product>
+    <Title>CodeBrix.StyleSheetParse</Title>
+    <Authors>Jeremy Ellis</Authors>
+    <Description>A fully managed, cross-platform CSS/stylesheet parsing library for .NET. Parses CSS into a navigable structure, supports selector parsing, style rule extraction, and stylesheet serialization with multiple formatting options. Zero external dependencies.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ellisnet/CodeBrix.StyleSheetParse</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ellisnet/CodeBrix.StyleSheetParse</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon-codebrix-128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>Copyright (c) 2026 Jeremy Ellis and contributors</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <IsPackable>true</IsPackable>
+    <PackageTags>css;stylesheet;parser;css-parser;style;style-rules;selectors;CodeBrix</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon-codebrix-128.png" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\AGENT-README.txt" Pack="true" PackagePath="" />
+    <None Include="..\..\THIRD-PARTY-NOTICES.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+</Project>
