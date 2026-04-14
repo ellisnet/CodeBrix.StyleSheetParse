@@ -6,7 +6,7 @@
     <File Path="README.md" />
     <File Path="THIRD-PARTY-NOTICES.txt" />
   </Folder>
-  <Folder Name="/tests/">
+  <Folder Name="/Tests/">
     <Project Path="tests/CodeBrix.StyleSheetParse.Tests/CodeBrix.StyleSheetParse.Tests.csproj" />
   </Folder>
   <Project Path="src/CodeBrix.StyleSheetParse/CodeBrix.StyleSheetParse.csproj" />
