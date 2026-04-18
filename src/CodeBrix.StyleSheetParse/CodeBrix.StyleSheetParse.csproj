@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <PackageId>CodeBrix.StyleSheetParse.MitLicenseForever</PackageId>
-    <Version>1.0.102</Version>
+    <Version>1.0.106</Version>
     <Product>CodeBrix.StyleSheetParse</Product>
     <Title>CodeBrix.StyleSheetParse</Title>
     <Authors>Jeremy Ellis</Authors>
