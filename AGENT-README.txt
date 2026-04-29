@@ -747,64 +747,66 @@ Feature-to-test-file mapping:
     -> tests/CodeBrix.StyleSheetParse.Tests/SelectorsTests.cs
 
   CSS color values:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Color.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/ColorTests.cs
 
   CSS construction functions (calc, var, etc.):
-    -> tests/CodeBrix.StyleSheetParse.Tests/ConstructionFunctions.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssConstructionFunctions.cs
 
   @container queries:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Container.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssContainerTests.cs
 
   @font-face rules:
-    -> tests/CodeBrix.StyleSheetParse.Tests/FontFace.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/FontFaceTests.cs
 
   Font properties:
-    -> tests/CodeBrix.StyleSheetParse.Tests/FontProperty.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssFontPropertyTests.cs
 
   CSS gradient functions:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Gradient.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/GradientTests.cs
 
   @import rules:
-    -> tests/CodeBrix.StyleSheetParse.Tests/ImportRule.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssImportRuleTests.cs
 
   @keyframes rules:
-    -> tests/CodeBrix.StyleSheetParse.Tests/KeyframeRule.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssKeyframeRuleTests.cs
 
   List properties (list-style, etc.):
-    -> tests/CodeBrix.StyleSheetParse.Tests/ListProperty.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssListPropertyTests.cs
 
   Media features and media lists:
-    -> tests/CodeBrix.StyleSheetParse.Tests/MediaFeatures.cs
-    -> tests/CodeBrix.StyleSheetParse.Tests/MediaList.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssMediaFeaturesTests.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssMediaListTests.cs
 
   Object sizing properties:
-    -> tests/CodeBrix.StyleSheetParse.Tests/ObjectSizing.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssObjectSizingTests.cs
 
   CSS properties (general):
-    -> tests/CodeBrix.StyleSheetParse.Tests/Property.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssPropertyTests.cs
 
   Flexbox properties:
     -> tests/CodeBrix.StyleSheetParse.Tests/Flexbox.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/FlexPropertyTests.cs
 
   Real-world CSS parsing (e.g., bootstrap.css):
     -> tests/CodeBrix.StyleSheetParse.Tests/RealWorld.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssCasesTests.cs
 
   Stylesheet parsing and manipulation:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Sheet.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssSheetTests.cs
 
   @supports rules:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Supports.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssSupportsTests.cs
 
   CSS tokenization:
-    -> tests/CodeBrix.StyleSheetParse.Tests/Tokenization.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssTokenizationTests.cs
 
   @document function:
-    -> tests/CodeBrix.StyleSheetParse.Tests/DocumentFunction.cs
+    -> tests/CodeBrix.StyleSheetParse.Tests/CssDocumentFunctionTests.cs
 
 HOW TO USE: Fetch the raw file content from GitHub using a URL like:
     https://raw.githubusercontent.com/ellisnet/CodeBrix.StyleSheetParse/main/{path}
 For example:
-    https://raw.githubusercontent.com/ellisnet/CodeBrix.StyleSheetParse/main/tests/CodeBrix.StyleSheetParse.Tests/Sheet.cs
+    https://raw.githubusercontent.com/ellisnet/CodeBrix.StyleSheetParse/main/tests/CodeBrix.StyleSheetParse.Tests/CssSheetTests.cs
 
 
 ================================================================================
