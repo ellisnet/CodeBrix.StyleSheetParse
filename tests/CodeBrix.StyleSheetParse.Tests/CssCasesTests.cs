@@ -1,14 +1,14 @@
 using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
 
 public class CssCasesTests : CssConstructionFunctions
 {
-    private static Stylesheet ParseSheet(string text)
-    {
-        return ParseStyleSheet(text, true, true, true, true, true);
-    }
+    private static Stylesheet ParseSheet(string text) =>
+        ParseStyleSheet(text, true, true, true, 
+            true, true, cancellation: CancellationToken.None);
 
     [Fact]
     public void StyleSheetAtNamespace()

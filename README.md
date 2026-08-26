@@ -9,17 +9,32 @@ Please update your C#/.NET code and projects to the latest LTS version of Micros
 
 CodeBrix.StyleSheetParse is a fork of the code of the open source ExCSS library - see below for licensing details.
 
+## Installation
+
+```
+dotnet add package CodeBrix.StyleSheetParse.MitLicenseForever
+```
+
+Note that the NuGet package ID and the namespace are different - there is no package named plain `CodeBrix.StyleSheetParse`:
+
+* NuGet package ID: `CodeBrix.StyleSheetParse.MitLicenseForever`
+* Assembly and namespace: `CodeBrix.StyleSheetParse` - i.e. `using CodeBrix.StyleSheetParse;`
+
+Everything public lives in that one namespace. The package has no NuGet dependencies and no native libraries; it depends only on the .NET base class library. XML documentation (IntelliSense) ships alongside the assembly.
+
 ## CodeBrix.StyleSheetParse supports:
 
 * CSS stylesheet parsing from strings and streams
 * Async parsing with cancellation support
 * CSS selector parsing and specificity calculation
 * Style rule, media query, and at-rule modeling
-* @keyframes, @font-face, @supports, @container, @page, @import rules
+* @keyframes, @font-face, @supports, @container, @page, @import, @namespace, @charset, @document, @viewport rules
 * Style declaration reading and manipulation
 * CSS serialization (converting parsed stylesheets back to CSS text)
 * Configurable parser tolerance (unknown rules, invalid selectors, comments, etc.)
 * Many more...
+
+CodeBrix.StyleSheetParse is a parser and object model, not a rendering or styling engine. It does not match selectors against a document, compute cascaded or inherited styles, validate CSS against a specification, resolve `@import` URLs or `var()` custom properties, or minify CSS. The one built-in formatter emits readable output; implement `IStyleFormatter` for anything else.
 
 ## Sample Code
 
@@ -62,7 +77,14 @@ string css = stylesheet.ToCss();
 Console.WriteLine(css);
 ```
 
-Note that additional sample code and usage examples are available in the `CodeBrix.StyleSheetParse.Tests` project.
+## Documentation
+
+The NuGet package includes `AGENT-README.txt`, a complete API reference and usage guide written for AI coding agents - point your agent at that file when it is writing code against this library.
+
+Additional sample code and usage examples are available in the `CodeBrix.StyleSheetParse.Tests` project:
+https://github.com/ellisnet/CodeBrix.StyleSheetParse/tree/main/tests/CodeBrix.StyleSheetParse.Tests
+
+Note that the test project has `InternalsVisibleTo` access to the library, so some of what it calls (for example `Stylesheet.Rules`, `MediaRule`, `SupportsRule`, `KeyframeRule` and `parser.ParseDeclaration`) is internal and is not available to package consumers.
 
 ## License
 

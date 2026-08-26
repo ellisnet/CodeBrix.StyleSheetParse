@@ -1,6 +1,6 @@
-using System.Linq;
 using System.Collections.Generic;
-using CodeBrix.StyleSheetParse;
+using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
@@ -14,7 +14,8 @@ public class CssConstructionFunctions
          bool tolerateInvalidValues = false,
          bool tolerateInvalidConstraints = false,
          bool preserveComments = false,
-         bool preserveDuplicateProperties = false)
+         bool preserveDuplicateProperties = false,
+         CancellationToken cancellation = default)
     {
         var parser = new StylesheetParser(
             includeUnknownRules,
@@ -24,6 +25,8 @@ public class CssConstructionFunctions
             tolerateInvalidConstraints,
             preserveComments,
             preserveDuplicateProperties);
+
+        //TODO: In the future, it would be good to be able to cancel a parse
 
         return parser.Parse(source);
     }

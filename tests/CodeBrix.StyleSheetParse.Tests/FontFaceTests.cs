@@ -1,4 +1,5 @@
 using CodeBrix.StyleSheetParse;
+using System.Threading;
 using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
@@ -9,7 +10,7 @@ public class FontFaceTests : CssConstructionFunctions
     public void FontFaceOpenSansWithSource()
     {
         var src = "@font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Light.eot);src:local('Open Sans Light'),local('OpenSans-Light'),url(fonts/OpenSans-Light.ttf) format('truetype'),url(fonts/OpenSans-Light.woff) format('woff');font-style:normal}";
-        var sheet = ParseStyleSheet(src);
+        var sheet = ParseStyleSheet(src, cancellation: CancellationToken.None);
         Assert.NotNull(sheet);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<FontFaceRule>(sheet.Rules[0]);
@@ -28,7 +29,7 @@ public class FontFaceTests : CssConstructionFunctions
     public void FontFaceOpenSansNoSource()
     {
         var src = "@font-face{font-family:'Open Sans';font-style:normal}";
-        var sheet = ParseStyleSheet(src);
+        var sheet = ParseStyleSheet(src, cancellation: CancellationToken.None);
         Assert.NotNull(sheet);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<FontFaceRule>(sheet.Rules[0]);

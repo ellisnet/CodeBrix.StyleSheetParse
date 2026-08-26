@@ -1,6 +1,7 @@
 using CodeBrix.StyleSheetParse;
-using Xunit;
 using System.Linq;
+using System.Threading;
+using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
 
@@ -10,7 +11,7 @@ public class CssContainerTests : CssConstructionFunctions
     public void SimpleContainer()
     {
         const string source = "@container tall (min-width: 500px) and (min-height: 300px) {h2 { line-height: 1.6; } }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         var rule = result.Rules[0] as ContainerRule;
         Assert.NotNull(rule);
@@ -25,7 +26,7 @@ public class CssContainerTests : CssConstructionFunctions
     public void ContainerWithoutName()
     {
         const string source = "@container (min-width: 500px) and (min-height: 300px) {h2 { line-height: 1.6; } }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         var rule = result.Rules[0] as ContainerRule;
         Assert.NotNull(rule);
@@ -40,7 +41,7 @@ public class CssContainerTests : CssConstructionFunctions
     public void ContainerWithoutCondition()
     {
         const string source = "@container tall {h2 { line-height: 1.6; } }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         var rule = result.Rules[0] as ContainerRule;
         Assert.NotNull(rule);
@@ -55,7 +56,7 @@ public class CssContainerTests : CssConstructionFunctions
     public void ContainerWithComparisonOperators()
     {
         const string source = "@container tall (width < 500px) and (height >= 300px) {h2 { line-height: 1.6; } }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         var rule = result.Rules[0] as ContainerRule;
         Assert.NotNull(rule);
@@ -86,7 +87,7 @@ color: rgb(0, 0, 255);
 font-size: 3rem !important;
   }
 }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         Assert.Equal(3, result.Rules.Length);
         var rule1 = result.Rules[0] as StyleRule;

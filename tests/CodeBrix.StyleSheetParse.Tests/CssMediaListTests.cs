@@ -1,6 +1,7 @@
 using CodeBrix.StyleSheetParse;
-using Xunit;
 using System;
+using System.Threading;
+using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
 
@@ -12,7 +13,7 @@ public class CssMediaListTests : CssConstructionFunctions
         var source = @"@media screen {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -28,7 +29,7 @@ h1 { color: green }
         var source = @"@media @screen {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -40,7 +41,7 @@ h1 { color: green }
     public void MediaListInterrupted()
     {
         var source = @"@media screen; h1 { color: green }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<StyleRule>(sheet.Rules[0]);
         var h1 = (StyleRule)sheet.Rules[0];
@@ -55,7 +56,7 @@ h1 { color: green }
         var source = @"@media screen,tv {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -71,7 +72,7 @@ h1 { color: green }
         var source = @"@media              screen ,          tv {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -87,7 +88,7 @@ h1 { color: green }
         var source = @"@media only screen,tv {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -103,7 +104,7 @@ h1 { color: green }
         var source = @"@media not screen,tv {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -119,7 +120,7 @@ h1 { color: green }
         var source = @"@media (min-width:30px) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -135,7 +136,7 @@ h1 { color: green }
         var source = @"@media only (width: 640px) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -151,7 +152,7 @@ h1 { color: green }
         var source = @"@media not (device-width: 640px) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -167,7 +168,7 @@ h1 { color: green }
         var source = @"@media all (max-width:30px) {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -181,7 +182,7 @@ h1 { color: red }
         var source = @"@media {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -195,7 +196,7 @@ h1 { color: red }
         var source = @"@media not {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -209,7 +210,7 @@ h1 { color: red }
         var source = @"@media only {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -224,7 +225,7 @@ h1 { color: red }
 h1 { color: red }
 }";
 
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -239,7 +240,7 @@ h1 { color: red }
 h1 { color: red }
 }
 h1 { color: green }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(2, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         Assert.IsType<StyleRule>(sheet.Rules[1]);
@@ -254,7 +255,7 @@ h1 { color: green }";
         var source = @"@media (max-width:30px) (min-width:10px) {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -268,7 +269,7 @@ h1 { color: red }
         var source = @"@media tv screen {
 h1 { color: red }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.Equal(RuleType.Media, sheet.Rules[0].Type);
         var media = sheet.Rules[0] as MediaRule;
@@ -282,7 +283,7 @@ h1 { color: red }
         var source = @"@media all and (max-width:30px) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -298,7 +299,7 @@ h1 { color: green }
         var source = @"@media (aspect-ratio: 16/9) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -314,7 +315,7 @@ h1 { color: green }
         var source = @"@media print and (max-width:30px) and (min-device-width:100px) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -330,7 +331,7 @@ h1 { color: green }
         var source = @"@media all and (min-width:0) and (min-device-width:100px), screen {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -346,7 +347,7 @@ h1 { color: green }
         var source = @"@media (resolution:72dpi) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -362,7 +363,7 @@ h1 { color: green }
         var source = @"@media (min-resolution:72dpi) and (max-resolution:140dpi) {
 h1 { color: green }
 }";
-        var sheet = ParseStyleSheet(source);
+        var sheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(1, sheet.Rules.Length);
         Assert.IsType<MediaRule>(sheet.Rules[0]);
         var media = (MediaRule)sheet.Rules[0];
@@ -406,7 +407,7 @@ h1 { color: green }
   /* Gleiche Styles */
   h1 { color: rgb(255, 0, 0); }
 }";
-        var result = ParseStyleSheet(source);
+        var result = ParseStyleSheet(source, cancellation: CancellationToken.None);
         Assert.Equal(source, result.StylesheetText.Text);
         Assert.Equal(2, result.Rules.Length);
         var rule1 = result.Rules[0] as MediaRule;

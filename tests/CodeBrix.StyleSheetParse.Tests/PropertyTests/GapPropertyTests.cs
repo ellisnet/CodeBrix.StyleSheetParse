@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests.PropertyTests; //Was previously: namespace ExCSS.Tests.PropertyTests;
@@ -16,7 +17,7 @@ public class GapPropertyTests : CssConstructionFunctions
     public void GapShorthandValueExpanded(string propertyValue, string expectedRowGap, string expectedColumnGap)
     {
         var source = $".test {{ gap: {propertyValue}; }}";
-        var styleSheet = ParseStyleSheet(source);
+        var styleSheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         var rule = styleSheet.StyleRules.First() as StyleRule;
 
         Assert.Equal(rule.Style.Gap, propertyValue);

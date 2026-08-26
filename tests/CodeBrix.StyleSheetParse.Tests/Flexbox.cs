@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace CodeBrix.StyleSheetParse.Tests; //Was previously: namespace ExCSS.Tests;
@@ -101,7 +102,7 @@ public class Flexbox : CssConstructionFunctions
     public void FlexFlowShorthandValueExpanded(string propertyValue, string expectedDirection, string expectedWrap)
     {
         var source = $".test {{ flex-flow: {propertyValue}; }}";
-        var styleSheet = ParseStyleSheet(source);
+        var styleSheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         var rule = styleSheet.StyleRules.First() as StyleRule;
 
         Assert.Equal(expectedDirection, rule.Style.FlexDirection);
@@ -114,7 +115,7 @@ public class Flexbox : CssConstructionFunctions
     public void FlexShorthandOneValueExpanded(string propertyValue)
     {
         var source = $".test {{ flex: {propertyValue}; }}";
-        var styleSheet = ParseStyleSheet(source);
+        var styleSheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         var rule = styleSheet.StyleRules.First() as StyleRule;
 
         Assert.Equal(propertyValue, rule.Style.FlexGrow);
@@ -131,7 +132,7 @@ public class Flexbox : CssConstructionFunctions
                                                string expectedFlexBasis)
     {
         var source = $".test {{ flex: {propertyValue}; }}";
-        var styleSheet = ParseStyleSheet(source);
+        var styleSheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         var rule = styleSheet.StyleRules.First() as StyleRule;
 
         Assert.Equal(expectedFlexGrow, rule.Style.FlexGrow);
@@ -149,7 +150,7 @@ public class Flexbox : CssConstructionFunctions
                                                  string expectedFlexBasis)
     {
         var source = $".test {{ flex: {propertyValue}; }}";
-        var styleSheet = ParseStyleSheet(source);
+        var styleSheet = ParseStyleSheet(source, cancellation: CancellationToken.None);
         var rule = styleSheet.StyleRules.First() as StyleRule;
 
         Assert.Equal(propertyValue, rule.Style.Flex);

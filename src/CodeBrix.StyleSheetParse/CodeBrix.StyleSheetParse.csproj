@@ -54,7 +54,7 @@
     <Product>CodeBrix.StyleSheetParse</Product>
     <Title>CodeBrix.StyleSheetParse</Title>
     <Authors>Jeremy Ellis</Authors>
-    <Description>A fully managed, cross-platform CSS/stylesheet parsing library for .NET. Parses CSS into a navigable structure, supports selector parsing, style rule extraction, and stylesheet serialization with multiple formatting options. Zero external dependencies.</Description>
+    <Description>A fully managed, cross-platform CSS/stylesheet parsing library for .NET. Parses CSS into a navigable structure, supports selector parsing, style rule extraction, and stylesheet serialization. Zero external dependencies.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ellisnet/CodeBrix.StyleSheetParse</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ellisnet/CodeBrix.StyleSheetParse</RepositoryUrl>
