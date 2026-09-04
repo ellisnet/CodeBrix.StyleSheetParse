@@ -33,7 +33,15 @@ REPOSITORY LAYOUT
     LICENSE                  MIT
     THIRD-PARTY-NOTICES.txt  ExCSS notice (packed into the nupkg)
     icon-codebrix-128.png    Package icon (packed into the nupkg)
-    CodeBrix.StyleSheetParse.slnx   Solution
+    global.json              Selects the Microsoft.Testing.Platform test
+                             runner. Does NOT pin an SDK version. See TESTING
+                             below.
+    CodeBrix.StyleSheetParse.slnx   Solution. The Solution Items folder carries
+                             .gitignore, AGENT-README.txt, EXTRAS-README.txt,
+                             global.json, icon-codebrix-128.png, LICENSE,
+                             MAINTAINER-README.txt, README-INDEX.txt, README.md
+                             and THIRD-PARTY-NOTICES.txt; the Tests folder
+                             carries the test project.
     AGENTS.md, CLAUDE.md, .clinerules, .cursorrules, .windsurfrules,
     .cursor/rules/agent-readme.mdc, .github/copilot-instructions.md,
     .junie/guidelines.md            AI-agent pointer stubs - these are
@@ -102,6 +110,23 @@ The test project (tests/CodeBrix.StyleSheetParse.Tests) uses xunit.v3 with
 xunit.runner.visualstudio and Microsoft.NET.Test.Sdk. There are roughly a
 thousand [Fact]/[Theory] cases. No opt-in environment variables, no special
 prep, no network access, nothing platform-specific.
+
+global.json at the repository root is load-bearing for testing. It has no
+"sdk" section and pins no SDK version - runner selection is the only thing it
+is there for:
+
+    { "test": { "runner": "Microsoft.Testing.Platform" } }
+
+The test project runs on Microsoft.Testing.Platform (xunit.v3), which no longer
+supports the legacy VSTest bridge on the .NET 10 SDK. Do NOT delete global.json
+- without it "dotnet test" fails outright with "Testing with VSTest target is
+no longer supported by Microsoft.Testing.Platform on .NET 10 SDK and later".
+Because the setting lives in global.json rather than in the csproj, it applies
+to every "dotnet test" run anywhere in the repository, including CI. Keep the
+file committed, and keep it in the .slnx Solution Items folder.
+
+There is no code-coverage collector in the test project; coverlet.collector is
+not referenced.
 
 bootstrap.css is an EmbeddedResource in the test project; the selector and
 real-world tests load it by manifest resource name

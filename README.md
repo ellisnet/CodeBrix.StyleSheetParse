@@ -7,8 +7,6 @@ CodeBrix.StyleSheetParse supports applications and assemblies that target Micros
 Microsoft .NET version 10.0 is a Long-Term Supported (LTS) version of .NET, and was released on Nov 11, 2025; and will be actively supported by Microsoft until Nov 14, 2028.
 Please update your C#/.NET code and projects to the latest LTS version of Microsoft .NET.
 
-CodeBrix.StyleSheetParse is a fork of the code of the open source ExCSS library - see below for licensing details.
-
 ## Installation
 
 ```
@@ -88,7 +86,8 @@ Note that the test project has `InternalsVisibleTo` access to the library, so so
 
 ## License
 
-The project is licensed under the MIT License. see: https://en.wikipedia.org/wiki/MIT_License
+CodeBrix.StyleSheetParse is licensed under the MIT License - see the
+[LICENSE](https://github.com/ellisnet/CodeBrix.StyleSheetParse/blob/main/LICENSE) file.
 
-All code originating from ExCSS was included as allowed by the MIT License permissible open source software license - as of ExCSS version 4.3.1.
-This project (CodeBrix.StyleSheetParse) complies with all provisions of the source code license of ExCSS v4.3.1 (MIT License).
+For licensing and provenance information about the open source code included in
+this package, see [THIRD-PARTY-NOTICES.txt](https://github.com/ellisnet/CodeBrix.StyleSheetParse/blob/main/THIRD-PARTY-NOTICES.txt).

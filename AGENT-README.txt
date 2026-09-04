@@ -13,9 +13,8 @@ can be queried, manipulated, and serialized back to CSS.
 Target framework: .NET 10 or later. No dependencies other than .NET itself.
 No native libraries, no OS restrictions - it runs anywhere .NET 10 runs.
 
-Provenance: this library is a fork of the open-source ExCSS library (MIT), as
-of ExCSS version 4.3.1. Every namespace was renamed from "ExCSS" to
-"CodeBrix.StyleSheetParse". Do NOT use ExCSS namespaces, and do NOT assume an
+Provenance: this library is a fork of the open-source ExCSS library (MIT).
+Every namespace was renamed from "ExCSS" to "CodeBrix.StyleSheetParse". Do NOT use ExCSS namespaces, and do NOT assume an
 API exists here merely because ExCSS documentation or your own memory of ExCSS
 mentions it - several types that ExCSS exposes are internal in this fork
 (they are called out explicitly below).
