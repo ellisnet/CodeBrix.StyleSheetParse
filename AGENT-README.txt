@@ -329,7 +329,7 @@ StyleDeclaration is the content between { and }.
 
     public sealed class StyleDeclaration : StylesheetNode, IProperties
     {
-        public event Action<string> Changed;   // fires with the new CssText
+        public event Action<string> Changed;   // raised with the new CssText
 
         public string CssText { get; set; }    // set => re-parse the block
         public IEnumerable<Property> Declarations { get; }
@@ -361,7 +361,7 @@ Behaviour that is easy to get wrong (all verified in source):
      "!important".
   -> Setting a shorthand explodes it into its longhands; the shorthand itself
      is not stored (see the shorthand note below).
-  -> Changed fires after SetProperty and RemoveProperty succeed, carrying the
+  -> Changed is raised after SetProperty and RemoveProperty succeed, carrying the
      declaration block's new CssText.
 
 SHORTHANDS: when a stylesheet is parsed, a shorthand declaration is expanded
@@ -924,7 +924,8 @@ ANGLE / TIME / FREQUENCY / RESOLUTION / NUMBER / PERCENT - the same shape:
         static values Zero, Fifty, Hundred }
 
 All of them implement IEquatable<T>, IComparable<T> and IFormattable, and all
-define == != < > <= >=.
+except Resolution define == != < > <= >= (Resolution has no operators; use
+Equals and CompareTo).
 
 COLOR
 
@@ -2373,7 +2374,9 @@ ProtocolNames, TextEncoding      (there is NO public Keywords class)
 
 --- Errors ---
 Thrown:             ParseException (mutation + re-parse paths)
-Never thrown:       parsing malformed CSS - bad input is dropped silently
+Usually not thrown: parsing malformed CSS - bad input is normally dropped
+                    silently (a few parse-time cases do throw; see ERRORS,
+                    DIAGNOSTICS AND SOURCE POSITIONS)
 Diagnostics:        node.StylesheetText?.Range (TextRange/TextPosition)
 Vocabulary only:    ParseError, TokenizerError (no public error event)
 
